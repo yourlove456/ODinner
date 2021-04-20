@@ -1,0 +1,334 @@
+   .file_input>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_input>label>img{
+   cursor:pointer;
+   } 
+   .file_input label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputa>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputa>label>img{
+   cursor:pointer;
+   } 
+   .file_inputa label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputb>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputb>label>img{
+   cursor:pointer;
+   } 
+   .file_inputb label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputc>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputc>label>img{
+   cursor:pointer;
+   } 
+   .file_inputc label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputd>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputd>label>img{
+   cursor:pointer;
+   } 
+   .file_inputd label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inpute>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inpute>label>img{
+   cursor:pointer;
+   } 
+   .file_inpute label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputf>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputf>label>img{
+   cursor:pointer;
+   } 
+   .file_inputf label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputg>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputg>label>img{
+   cursor:pointer;
+   } 
+   .file_inputg label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputh>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputh>label>img{
+   cursor:pointer;
+   } 
+   .file_inputh label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputi>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputi>label>img{
+   cursor:pointer;
+   } 
+   .file_inputi label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputj>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputj>label>img{
+   cursor:pointer;
+   } 
+   .file_inputj label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputk>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputk>label>img{
+   cursor:pointer;
+   } 
+   .file_inputk label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputl>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputl>label>img{
+   cursor:pointer;
+   } 
+   .file_inputl label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputm>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputm>label>img{
+   cursor:pointer;
+   } 
+   .file_inputm label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputn>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputn>label>img{
+   cursor:pointer;
+   } 
+   .file_inputn label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }
+   
+   
+   .file_inputo>label {
+      position:relative;
+      cursor:pointer;
+      display:inline-block;
+      vertical-align:middle;
+      overflow:hidden;
+      width:150px; 
+      height:150px;
+      line-height: 150px;
+      }
+   .file_inputo>label>img{
+   cursor:pointer;
+   } 
+   .file_inputo label input {
+      position:absolute; 
+      width:0px;
+      height:0px; 
+      overflow:hidden;
+   }

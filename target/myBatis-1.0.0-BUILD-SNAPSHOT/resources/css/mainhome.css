@@ -1,0 +1,30 @@
+@charset "EUC-KR";
+
+        * {margin: 0; padding: 0;}
+        #wrap {width: 1200px; margin: 0 auto;}
+        section > div > img{
+           width: 18%; margin: 1%; 
+           height: 170px; 
+           background-color: #8cbc14; 
+           float: left; 
+           border-radius: 5px;
+           }
+
+        /* 화면 너비 0 ~ 1200px */
+        @media (max-width: 1220px){
+            #wrap {width: 100%;}
+            section > div > img{width: 23%;}
+            section > div:nth-child(5n)> img {display: none;}
+        }
+
+        /* 화면 너비 0 ~ 768px */
+        @media (max-width: 768px){
+            section > div > img {width: 31.3333%;}
+            section > div:nth-child(5) > img {display: block;}
+        }
+
+            /* 화면 너비 0 ~ 480px */
+        @media (max-width: 480px){
+            section > div > img{width: 48%;}
+            section > div:nth-child(5n) > img{display: block;}
+        }

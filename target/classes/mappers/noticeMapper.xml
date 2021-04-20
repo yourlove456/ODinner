@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="noticeMapper">
+ <insert id="noticeWrite">
+  INSERT INTO SR_NOTICE( BNO, TITLE, CONTENT, WRITER, TOP)
+  VALUES( SR_NOTICE_SEQ.NEXTVAL, #{title}, #{content}, #{writer}, #{top})
+ </insert>
+ 
+ <select id="listPage" resultType="com.ko.eat.vo.NoticeVO" parameterType="com.ko.eat.vo.SearchCriteria">
+  SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, TOP
+  FROM( SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, TOP, ROW_NUMBER() OVER(ORDER BY BNO DESC) AS RNUM
+  FROM SR_NOTICE WHERE 1=1)
+  WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY TOP DESC, BNO DESC
+ </select>
+ 
+ <select id="noticeListCount" parameterType="com.ko.eat.vo.SearchCriteria" resultType="int">
+  SELECT COUNT(BNO) FROM SR_NOTICE WHERE 1=1 AND BNO>0
+ </select>
+ 
+ <select id="noticeRead" parameterType="int" resultType="com.ko.eat.vo.NoticeVO">
+  SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, TOP
+  FROM SR_NOTICE WHERE BNO = #{bno}
+ </select>
+ 
+ <update id="noticeUpdate" parameterType="com.ko.eat.vo.NoticeVO">
+  UPDATE SR_NOTICE SET TITLE = #{title},  CONTENT = #{content}, TOP = #{top} WHERE BNO = #{bno}
+ </update>
+ 
+ <delete id="noticeDelete" parameterType="int">
+  DELETE FROM SR_NOTICE WHERE BNO = #{bno}
+ </delete>
+</mapper>

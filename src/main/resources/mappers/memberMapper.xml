@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMapper">
+
+   <insert id="memberRegister">
+      INSERT INTO SR_MEMBER(
+         USERID,
+         USERPASS,
+         USERNAME,
+         USERTEL,
+         USEREMAIL
+      )
+      VALUES(
+         #{userId},
+         #{userPass},
+         #{userName},
+         #{userTel},
+         #{userEmail}
+      )
+   </insert>
+   
+      <insert id="registerForKakao" parameterType="map">
+      INSERT INTO SR_MEMBER(
+         USERID,
+         USERPASS,
+         USERNAME,
+         USERTEL,
+         USEREMAIL
+      )
+      VALUES(
+         #{userId},
+         'KAKAO',
+         #{userName},
+         'KAKAO',
+         #{userEmail}
+      )
+   </insert>
+   
+   	<select id="memberList" resultType="com.ko.eat.vo.MemberVO">
+		SELECT USERID, USERPASS, USERNAME, USERTEL, USEREMAIL, decode(verify, '0', '일반', '1', '매니저', '관리자') as verify, regdate
+		FROM SR_MEMBER
+	</select>
+	
+	<select id="memberListForKakao" resultType="String">
+		SELECT USERID FROM SR_MEMBER
+	</select>
+	
+   <select id="memberLogin" resultType="com.ko.eat.vo.MemberVO">
+      SELECT *
+         FROM SR_MEMBER
+            WHERE USERID = #{userId}
+            AND USERPASS = #{userPass}
+   </select>
+   
+     <select id="KakaoLogin" resultType="com.ko.eat.vo.MemberVO">
+      SELECT *
+         FROM SR_MEMBER
+            WHERE USERID = #{userId}
+   </select>
+   
+   <!-- 아이디 중복체크 -->
+   <select id="idChk" resultType="int">
+    SELECT COUNT(*) FROM SR_MEMBER
+    WHERE USERID = #{userId}
+   </select>
+
+   <update id = "memberUpdate">
+      UPDATE SR_MEMBER
+      SET 
+         USERPASS = #{userPass},
+         USERNAME = #{userName},
+         USERTEL = #{userTel},
+         USEREMAIL = #{userEmail}
+      WHERE USERID = #{userId}
+      
+   </update>
+
+   <delete id = "memberDelete">
+      DELETE FROM SR_MEMBER
+         WHERE USERID = #{userId}
+         AND USERPASS = #{userPass}
+   </delete>
+
+</mapper>

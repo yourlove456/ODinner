@@ -1,0 +1,239 @@
+@charset "UTF-8";
+
+*{
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 0.75em;
+    line-height: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    list-style: none;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+a{    /* 이벤트x 링크 */
+    text-decoration: none;  
+}
+header a:hover{   /* 마우스 오버 링크 */
+    color: #269BAF;
+    text-decoration: underline;  
+}
+
+
+.test_1{
+    height: 100px;
+}
+.main_slide{
+	height: 600px;	
+}
+
+
+.master_hd{   /* */
+    border: 1px solid red;
+    width: 100%;
+    margin: 0 auto;
+}
+.hd{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+}
+.hd_1,.hd_2,.hd_3 div{
+    float: left;
+    border: 1px solid darkturquoise;
+    height: 37px;
+    line-height: 37px;
+}
+.hd_3>#hd_3{
+    display: grid;
+    place-items: center;
+}
+
+
+/*
+.hd_4{
+    width: inherit;
+    margin: 0 auto;
+} /* 첫번째 방법 : 때리고 싶음 */
+
+
+.hd_4{
+    position: absolute;
+    left: 50%;
+    margin-left: -75px;
+} /* 두번째 방법 : 가운데는 맞으나 줄였을때 어색(포지션이 앱솔루트라 그런듯) */
+
+/*
+.hd_4{
+    text-align: center;
+}
+.hd_hd_4{
+    display: inline-block;
+} /* 세번째 방법 : 때리고 싶음 */
+
+/*
+.hd_hd_4{
+    width: 0px;
+    margin: 0 auto;
+} /* 네번째 방법 : 어색 */
+
+.hd_4{
+    border: 1px solid darkblue;
+}
+.hd_5{
+    float: right;
+    border: 1px solid darkturquoise;
+    height: 37px;
+    line-height: 37px;
+}
+
+
+
+.dropBox{
+    display: flex;
+    float: left;
+}
+
+.container_1{
+    width: 1100px;
+    margin: 0 auto;
+}
+nav{
+    width: 100%;
+    float: left;
+    height: 100%;
+    font-size: 19px;
+    font-weight: bold;
+}
+nav li{
+    width: auto;
+    font-size: 1.5em;
+    padding: 0 20px;
+    height: 100%;
+    border-top: 1px solid black;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+nav li:hover > .dropmenu{
+    visibility: visible;
+}
+nav li > .dropmenu{
+    display: inline-block;
+    width: 150px;
+    clear: both;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    text-align: left;
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    visibility: hidden;
+}
+nav li > .dropmenu > span{
+    width: 100%;
+    display: inline-block;
+    padding-left: 20px;
+    background: white;
+    color: red;
+    font-weight: 400;
+}
+.dropmenu > span{ 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 1.2em;
+    padding: 12px 36px;
+}
+.dropmenu > span:hover{
+    font-weight: 700;
+    background-color: skyblue;
+}
+nav li:hover{
+    color: red;
+    font-weight: 700;
+    border-top: 3px solid black;
+}
+nav li.active{
+    color: #00bd39;
+    font-weight: 700;
+    border-top: 3px solid black;
+}
+nav span:hover{
+    background-color: silver;
+}
+
+
+.slide_image{
+	display: grid;
+    place-items: center;
+}
+
+
+#mp img{
+    width: 100%;
+}
+#bp{
+   text-align: center;
+}
+#master_bp{
+    width: 1200px; display: flex; flex-flow: row wrap;
+    border: 1px solid #d5d5d5;
+}
+#master_bp > figure img{
+    width: 320px;
+    height: 239px;
+}
+#master_bp > figure img:hover{
+    width: 340px;
+    height: 254px;
+}
+figcaption{
+    text-align: center;
+    font-size: 20px;
+}
+
+#master_bp2{
+    width: 1000px; display: flex; flex-flow: row wrap;
+}
+#master_bp2 img{
+    width: 400px;
+    height: 400px;
+    border: 1px solid gray;
+}
+.space{
+    height: 50px;
+}
+
+
+.container_2{
+    width: 1100px;
+    margin: 0 auto;
+}
+footer{
+    width: 100%;
+    height: 115px;
+    border-top: 2px solid black;
+    font-weight: 400;
+}
+footer .top{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #cbcbcb;
+    margin-bottom: 15px;
+}
+footer .top span{
+    height: 100%;
+    line-height: 40px;
+    padding-right: 15px;
+    cursor: pointer;
+}
+footer .top span:hover{
+    font-weight: 700;
+}
+footer .copyright{
+    margin-top: 5px;
+    font-weight: 700;
+}

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+ <!-- 게시판 글 작성 -->
+ <insert id="insert" parameterType = "com.ko.eat.vo.BoardVO" useGeneratedKeys = "true" keyProperty = "bno">
+ <selectKey keyProperty = "bno" resultType = "int" order = "BEFORE">
+ 	SELECT SR_BOARD_SEQ.NEXTVAL FROM DUAL
+ </selectKey>
+ 
+   INSERT INTO SR_BOARD( BNO, TITLE, INGREDIENT, MENU, LEV, TIME, SERVING,  TIP, WRITER)
+  VALUES( #{bno}, #{title}, #{ingredient}, #{menu}, #{lev}, #{time}, #{serving}, #{tip}, #{writer} )
+ </insert>
+
+ <insert id = "contentInsert">
+  INSERT INTO SR_CONTENT VALUES(
+  #{bno}, #{contenta}, #{contentb}, #{contentc}, #{contentd}, #{contente}, #{contentf}, #{contentg}, #{contenth}, #{contenti}, 
+  #{contentj}, #{contentk}, #{contentl}, #{contentm}, #{contentn}, #{contento}, #{imgFile[1]}, #{imgFile[2]}, 
+  #{imgFile[3]}, #{imgFile[4]}, #{imgFile[5]}, #{imgFile[6]}, #{imgFile[7]}, #{imgFile[8]}, #{imgFile[9]}, #{imgFile[10]},
+   #{imgFile[11]}, #{imgFile[12]}, #{imgFile[13]}, #{imgFile[14]}, #{imgFile[15]}, #{imgFile[0]}
+  ) 
+ </insert>
+ <select id="newdate">
+  SELECT * FROM SR_BOARD ORDER BY REGDATE DESC
+ </select>
+ 
+ <select id="olddate">
+  SELECT * FROM SR_BOARD ORDER BY REGDATE
+ </select>
+ <select id="listPage" resultType="com.ko.eat.vo.BoardVO" parameterType="com.ko.eat.vo.SearchCriteria">
+  SELECT BNO, TITLE, LEV, WRITER, REGDATE, IMGFILE0
+  FROM( SELECT B.BNO, TITLE, LEV, WRITER, REGDATE, SHOW, IMGFILE0, ROW_NUMBER() OVER(ORDER BY B.BNO DESC) AS RNUM
+  FROM SR_BOARD B, SR_CONTENT C WHERE B.BNO = C.BNO <include refid="search"></include>) MP
+  WHERE show = 1 and RNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY BNO DESC
+ </select>
+ <select id="listPagenew" resultType="com.ko.eat.vo.BoardVO" parameterType="com.ko.eat.vo.SearchCriteria">
+  SELECT BNO, TITLE, LEV, WRITER, REGDATE, IMGFILE0
+  FROM( SELECT B.BNO, TITLE, LEV, WRITER, REGDATE, SHOW, IMGFILE0, ROW_NUMBER() OVER(ORDER BY B.BNO DESC) AS RNUM
+  FROM SR_BOARD B, SR_CONTENT C WHERE B.BNO = C.BNO <include refid="search"></include>) MP
+  WHERE show = 1 and RNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY REGDATE DESC
+ </select>
+ <select id="listPageold" resultType="com.ko.eat.vo.BoardVO" parameterType="com.ko.eat.vo.SearchCriteria">
+  SELECT BNO, TITLE, LEV, WRITER, REGDATE, IMGFILE0
+  FROM( SELECT B.BNO, TITLE, LEV, WRITER, REGDATE, SHOW, IMGFILE0, ROW_NUMBER() OVER(ORDER BY B.BNO DESC) AS RNUM
+  FROM SR_BOARD B, SR_CONTENT C WHERE B.BNO = C.BNO <include refid="search"></include>) MP
+  WHERE show = 1 and RNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY REGDATE
+ </select>
+  <select id="listlike" resultType="com.ko.eat.vo.BoardVO" parameterType="com.ko.eat.vo.SearchCriteria">
+ SELECT title, writer, imgfile0 from ( select b.bno, count(*) as blike from sr_board b, sr_boardlike bl 
+                 where b.bno=bl.bno and b.show=1 group by b.bno order by count(*) desc ) bbl,
+                 sr_board bb, sr_content bc where bbl.bno=bb.bno and bbl.bno = bc.bno and <![CDATA[rownum < 5]]>
+ </select>
+ <select id="mypagelist" resultType="com.ko.eat.vo.BoardVO" parameterType="com.ko.eat.vo.MemberVO">
+   select * from sr_board where WRITER = #{userId} and show=1
+ </select>
+ 
+ 
+ <select id="listCount" parameterType="com.ko.eat.vo.SearchCriteria" resultType="int">
+  SELECT COUNT(BNO) FROM SR_BOARD WHERE 1=1 <include refid="search"></include> AND BNO>0
+ </select>
+ 
+ <sql id="search">
+  <if test="searchType != null">
+   <if test="searchType == 't'.toString()">AND TITLE LIKE '%'|| #{keyword} || '%'</if>
+   <if test="searchType == 'c'.toString()">AND WRITER LIKE '%'|| #{keyword} || '%'</if>
+   <if test="searchType == 'w'.toString()">AND LEV LIKE '%'||#{keyword} ||'%'</if>
+   <if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%'||#{keyword} ||'%')or (LEV LIKE '%' || #{keyword} || '%')</if>
+   
+  </if>
+ </sql>
+ 
+ <select id="read" parameterType="int" resultType="com.ko.eat.vo.BoardVO">
+  SELECT b.BNO, TITLE, INGREDIENT, MENU, LEV, TIME, SERVING, TIP, WRITER, REGDATE,
+  CONTENTA, CONTENTB, CONTENTC, CONTENTD, CONTENTE, CONTENTF, CONTENTG, CONTENTH, CONTENTI, CONTENTJ, CONTENTK, CONTENTL, CONTENTM, CONTENTN, CONTENTO, 
+  IMGFILE1, IMGFILE2, IMGFILE3, IMGFILE4, IMGFILE5, IMGFILE6, IMGFILE7, IMGFILE8, IMGFILE9, IMGFILE10, IMGFILE11, IMGFILE12, IMGFILE13, IMGFILE14, IMGFILE15, IMGFILE0
+  FROM SR_BOARD b, sr_content s WHERE b.bno = s.bno AND b.BNO = #{bno} and show =1
+ </select>
+ 
+ <update id="update" parameterType="com.ko.eat.vo.BoardVO">
+  UPDATE SR_BOARD SET TITLE = #{title}, INGREDIENT = #{ingredient}, MENU= #{menu}, LEV= #{lev}, TIME= #{time}, SERVING=#{serving}, TIP=#{tip} WHERE BNO = #{bno}
+ </update>
+ 
+ <update id="contentUpdate" parameterType="com.ko.eat.vo.BoardVO">
+  UPDATE SR_CONTENT SET CONTENTA = #{contenta},
+  CONTENTB = #{contentb}, CONTENTC = #{contentc}, CONTENTD = #{contentd}, CONTENTE = #{contente}, CONTENTF = #{contentf}, CONTENTG = #{contentg}, CONTENTH = #{contenth},
+  CONTENTI = #{contenti}, CONTENTJ = #{contentj}, CONTENTK = #{contentk}, CONTENTL = #{contentl}, CONTENTM = #{contentm}, CONTENTN = #{contentn}, CONTENTO = #{contento}
+  WHERE BNO = #{bno}
+ </update>
+ 
+ 
+ <update id="delete" parameterType="int">
+ update sr_board set show = 0 where bno = #{bno}
+ </update>
+  <delete id="deleteBLike" parameterType="int">
+  DELETE FROM SR_BOARDLIKE WHERE BNO = #{bno}
+ </delete>
+ <delete id="deleteBContent" parameterType="int">
+  DELETE FROM SR_CONTENT WHERE BNO = #{bno}
+ </delete>  
+ 
+<!-- 추천기능 -->
+ 
+<select id="checkLike" parameterType="map" resultType="int">
+	select count(*) from SR_BOARDLIKE WHERE BNO = #{bno} AND USERID = #{userId}
+</select>
+
+<insert id="addLike" parameterType="map">
+	insert into SR_BOARDLIKE values(#{userId}, #{bno})
+</insert>
+
+<delete id="deleteLike" parameterType="map">
+	delete from SR_BOARDLIKE where BNO = #{bno} and USERID = #{userId}
+</delete>
+
+<select id="countLike" parameterType="int" resultType="int">
+	select count(*) from SR_BOARDLIKE where BNO = #{bno}
+</select>
+ 
+<select id= "searchFood" parameterType= "list" resultType= "com.ko.eat.vo.BoardVO" >
+SELECT * FROM sr_board WHERE 1=1
+<if test = "searchList != null">
+AND 
+<foreach collection = "searchList" item= "food" index= "index"  separator = " AND ">
+	ingredient LIKE '%'||#{food} ||'%'
+</foreach>
+</if>
+
+
+</select>
+  
+</mapper>

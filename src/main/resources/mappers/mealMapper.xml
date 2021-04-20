@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "mealMapper">
+
+	<select id ="viewMeal" parameterType = "com.ko.eat.vo.SearchCriteria" resultType = "com.ko.eat.vo.MealVO">
+	
+			select m.mealId, m.userid, mealname, b.bno, b.title
+			from sr_board b, sr_mealplan m, sr_slot s
+			where s.mealId =m.mealId and b.bno = s.bno
+			order by m.mealid desc, slotno asc
+	</select>
+	
+	<sql id = "search">
+		<if test = "searchType != null">
+			<if test = "searchType == 'listName'.toString()">AND MEALNAME LIKE '%' ||#{keyword}||'%'</if>
+			<if test = "searchType == 'userId'.toString()">AND USERID = #{keyword}</if>
+		</if>
+	</sql>
+	
+	<select id = "viewMealDetail" resultType = "com.ko.eat.vo.BoardVO">
+		select bno, title from sr_board where bno in(
+			#{slots})
+	</select>
+
+	<insert id ="newMeal" parameterType = "com.ko.eat.vo.MealVO">
+		INSERT INTO SR_MEALPLAN(
+				MEALID, USERID, MEALNAME
+			)
+			VALUES(
+				SR_MEAL_SEQ.NEXTVAL, #{userId}, #{mealName}			
+			)
+	</insert>
+
+	<insert id = "addToMeal" parameterType = "int">
+		INSERT INTO sr_slot(
+				mealid, bno
+			VALUES(
+				#{mealId}, #{bno}
+			)
+	</insert>
+	<update id = "updateMeal" parameterType = "com.ko.eat.vo.MealVO">
+		UPDATE sr_mealplan
+			SET mealname = #{mealName}
+			WHERE mealid = #{mealId}
+		UPDATE sr_slot
+			SET slotno = #{slotno}
+			WHERE mealid = #{mealId} and bno = #{bno}
+	</update>
+		
+	<delete id="deleteCart" parameterType = "int">
+		DELETE
+		FROM SR_MEALPLAN
+		WHERE mealId = #{mealId}
+	</delete>
+</mapper>

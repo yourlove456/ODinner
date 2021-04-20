@@ -1,0 +1,84 @@
+=========  테이블 & 시퀀스 삭제   =========
+drop table sr_member purge;
+drop table sr_reply purge;
+drop table sr_board purge;
+drop table sr_mealplan purge;
+drop table upload_file purge;
+
+drop sequence sr_reply_seq;
+drop sequence sr_board_seq;
+
+
+=========  테이블 생성   =========
+create table sr_board(
+    bno number primary key,
+    title varchar2(100) not null,
+    ingredient varchar2(1000) not null,
+    menu varchar2(20) not null,
+    lev varchar2(20) not null,
+    time varchar2(20) not null,
+    serving varchar2(20) not null,
+    content varchar2(1000) not null,
+    tip varchar2(1000) not null,
+    writer varchar2(100) not null,
+    regdate date default sysdate,
+    boardLikeCnt int default 0
+);
+
+CREATE TABLE SR_MEMBER(
+    USERID VARCHAR(40) PRIMARY KEY,
+    verify VARCHAR(40) default '0',
+    USERPASS VARCHAR(10) NOT NULL,
+    USERNAME VARCHAR2(50) NOT NULL,
+    USERTEL VARCHAR2(100),
+    USEREMAIL NVARCHAR2(100),
+    REGDATE DATE DEFAULT SYSDATE
+);
+
+CREATE TABLE SR_MEALPLAN(
+    MEALID NUMBER PRIMARY KEY,
+    USERID VARCHAR2(4) NOT NULL REFERENCES SR_MEMBER(USERID),
+    MEALNAME VARCHAR2(50) NOT NULL,
+    SLOT1 NUMBER REFERENCES SR_BOARD(BNO),
+    SLOT2 NUMBER REFERENCES SR_BOARD(BNO),
+    SLOT3 NUMBER REFERENCES SR_BOARD(BNO),
+    SLOT4 NUMBER REFERENCES SR_BOARD(BNO),
+    SLOT5 NUMBER REFERENCES SR_BOARD(BNO)
+);
+
+create table upload_file(
+ file_id number(10) not null,
+ directory_name varchar2(128) null,
+ file_name varchar2(128) not null,
+ file_size varchar2(45) null,
+ file_content_type varchar(500) null,
+ file_upload_date timestamp not null,
+ file_data blob null,
+ constraint upload_file_id_ps primary key(file_id)
+ );
+
+create table sr_reply(
+bno number not null,
+rno number not null,
+content varchar2(1000) not null,
+writer varchar2(50) not null,
+regdate date default sysdate,
+primary key(bno,rno)
+);
+
+create table SR_BOARDLIKE(
+    userid varchar(40) references SR_MEMBER(userid),
+    bno number references SR_BOARD(bno)
+);
+
+
+=========  시퀀스 생성   =========
+create sequence sr_board_seq;
+
+create sequence sr_reply_seq;
+
+ 
+
+=========  제약 조건   =========
+alter table sr_reply add constraint sr_reply_bno foreign key(bno) references sr_board(bno);
+
